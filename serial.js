@@ -58,6 +58,80 @@ exports.clearBreak = function(connectionId, callback) {
 
 }
 
+exports.reqPermission = function(opts, successCallback, errorCallback) {
+    if (typeof opts === 'function') {  //user did not pass opts
+      errorCallback = successCallback;
+      successCallback = opts;
+      opts = {};
+    }
+    cordova.exec(
+        successCallback,
+        errorCallback,
+        'Serial',
+        'requestPermission',
+        [{'opts': opts}]
+    );
+};
+
+exports.open = function(opts, successCallback, errorCallback) {
+    cordova.exec(
+        successCallback,
+        errorCallback,
+        'Serial',
+        'openSerial',
+        [{'opts': opts}]
+    );
+}
+exports.write = function(data, successCallback, errorCallback) {
+    cordova.exec(
+        successCallback,
+        errorCallback,
+        'Serial',
+        'writeSerial',
+        [{'data': data}]
+    );
+}
+
+exports.writeHex = function(hexString, successCallback, errorCallback) {
+    cordova.exec(
+        successCallback,
+        errorCallback,
+        'Serial',
+        'writeSerialHex',
+        [{'data': hexString}]
+    );
+};
+
+exports.read = function(successCallback, errorCallback) {
+    cordova.exec(
+        successCallback,
+        errorCallback,
+        'Serial',
+        'readSerial',
+        []
+    );
+};
+
+exports.close = function(successCallback, errorCallback) {
+    cordova.exec(
+        successCallback,
+        errorCallback,
+        'Serial',
+        'closeSerial',
+        []
+    );
+};
+
+exports.registerReadCallback = function(successCallback, errorCallback) {
+    cordova.exec(
+        successCallback,
+        errorCallback,
+        'Serial',
+        'registerReadCallback',
+        []
+    );
+}
+
 exports.onReceive = new Event('onReceive');
 exports.onReceiveError = new Event('onReceiveError');
 
