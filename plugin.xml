@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  Copyright (c) 2013 The Chromium Authors. All rights reserved.
+  Use of this source code is governed by a BSD-style license that can be
+  found in the LICENSE file.
+-->
+<plugin xmlns="http://cordova.apache.org/ns/plugins/1.0"
+    id="cordova-plugin-chrome-apps-serial"
+    version="0.1.0-dev">
+  <engines>
+    <engine name="cordova" version=">=3.0.0" />
+  </engines>
+
+  <name>Chrome Apps Serial API</name>
+  <keywords>chrome,serial,usb-cdc</keywords>
+  <repo>https://github.com/r1000ru/cordova-plugin-chrome-apps-serial.git</repo>
+  <issue>https://github.com/r1000ru/cordova-plugin-chrome-apps-serial/issues</issue>
+
+  <dependency id="cordova-plugin-chrome-apps-common@1" />
+
+  <js-module src="serial.js" name="serial">
+    <clobbers target="chrome.serial" />
+  </js-module>
+
+  <platform name="android">
+    <config-file target="res/xml/config.xml" parent="/widget">
+      <feature name="ChromeSerial">
+        <param name="android-package" value="org.chromium.Serial"/>
+      </feature>
+    </config-file>
+
+    <source-file src="src/android/Serial.java" target-dir="src/org/chromium" />
+
+    <source-file src="lib/usb-serial-for-android/usbSerialExamples/src/main/res/xml/device_filter.xml" target-dir="res/xml" />
+    <source-file src="lib/usb-serial-for-android/usbSerialForAndroid/src/main/java/com/hoho/android/usbserial/driver/CdcAcmSerialDriver.java" target-dir="src/com/hoho/android/usbserial/driver" />
+    <source-file src="lib/usb-serial-for-android/usbSerialForAndroid/src/main/java/com/hoho/android/usbserial/driver/Ch34xSerialDriver.java" target-dir="src/com/hoho/android/usbserial/driver" />
+    <source-file src="lib/usb-serial-for-android/usbSerialForAndroid/src/main/java/com/hoho/android/usbserial/driver/CommonUsbSerialPort.java" target-dir="src/com/hoho/android/usbserial/driver" />
+    <source-file src="lib/usb-serial-for-android/usbSerialForAndroid/src/main/java/com/hoho/android/usbserial/driver/Cp21xxSerialDriver.java" target-dir="src/com/hoho/android/usbserial/driver" />
+    <source-file src="lib/usb-serial-for-android/usbSerialForAndroid/src/main/java/com/hoho/android/usbserial/driver/FtdiSerialDriver.java" target-dir="src/com/hoho/android/usbserial/driver" />
+    <source-file src="lib/usb-serial-for-android/usbSerialForAndroid/src/main/java/com/hoho/android/usbserial/driver/ProbeTable.java" target-dir="src/com/hoho/android/usbserial/driver" />
+    <source-file src="lib/usb-serial-for-android/usbSerialForAndroid/src/main/java/com/hoho/android/usbserial/driver/ProlificSerialDriver.java" target-dir="src/com/hoho/android/usbserial/driver" />
+    <source-file src="lib/usb-serial-for-android/usbSerialForAndroid/src/main/java/com/hoho/android/usbserial/driver/UsbId.java" target-dir="src/com/hoho/android/usbserial/driver" />
+    <source-file src="lib/usb-serial-for-android/usbSerialForAndroid/src/main/java/com/hoho/android/usbserial/driver/UsbSerialDriver.java" target-dir="src/com/hoho/android/usbserial/driver" />
+    <source-file src="lib/usb-serial-for-android/usbSerialForAndroid/src/main/java/com/hoho/android/usbserial/driver/UsbSerialPort.java" target-dir="src/com/hoho/android/usbserial/driver" />
+    <source-file src="lib/usb-serial-for-android/usbSerialForAndroid/src/main/java/com/hoho/android/usbserial/driver/UsbSerialProber.java" target-dir="src/com/hoho/android/usbserial/driver" />
+    <source-file src="lib/usb-serial-for-android/usbSerialForAndroid/src/main/java/com/hoho/android/usbserial/driver/UsbSerialRuntimeException.java" target-dir="src/com/hoho/android/usbserial/driver" />
+    <source-file src="lib/usb-serial-for-android/usbSerialForAndroid/src/main/java/com/hoho/android/usbserial/util/HexDump.java" target-dir="src/com/hoho/android/usbserial/util" />
+    <source-file src="lib/usb-serial-for-android/usbSerialForAndroid/src/main/java/com/hoho/android/usbserial/util/SerialInputOutputManager.java" target-dir="src/com/hoho/android/usbserial/util" />
+  </platform>
+
+</plugin>
